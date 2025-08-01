@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import ProfileForm from "../components/departments/ProfileForm";
 import ProfileList from "../components/departments/ProfileList";
+import MainLayout from "../layout/MainLayout";
 
 export default function DepartmentProfilesPage() {
     const [profiles, setProfiles] = useState([]);
@@ -17,7 +18,7 @@ export default function DepartmentProfilesPage() {
     }, []);
 
     return (
-        <div className="p-6">
+        <MainLayout className="p-6">
             <h1 className="text-2xl font-bold mb-4">Профили специалистов по отделам</h1>
             <ProfileForm
                 onSuccess={fetchProfiles}
@@ -29,6 +30,6 @@ export default function DepartmentProfilesPage() {
                 onEdit={setSelectedProfile}
                 onDelete={fetchProfiles}
             />
-        </div>
+        </MainLayout>
     );
 }
