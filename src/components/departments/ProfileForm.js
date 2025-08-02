@@ -29,13 +29,21 @@ export default function ProfileForm({ onSuccess, existing, onCancel }) {
     return (
         <form onSubmit={handleSubmit} className="mb-6 bg-white p-4 rounded shadow">
             <div className="grid grid-cols-2 gap-4">
-                <input
+                {/*<input
                     value={form.department}
                     onChange={(e) => setForm({ ...form, department: e.target.value })}
                     placeholder="Название отдела"
                     className="border p-2 rounded"
                     required
-                />
+                />*/}
+
+                <select value={form.department} onChange={(e) => setForm({...form, department: e.target.value })} className="border rounded px-3 py-2 w-full">
+                    <option value=''>Выберете отдел</option>
+                    <option value="hr">HR</option>
+                    <option value="логистический">Логистический</option>
+                    <option value="бухгалтерия">Бухгалтерия</option>
+                    <option value="юридический">Юридический</option>
+                </select>
                 <input
                     value={form.experience}
                     onChange={(e) => setForm({ ...form, experience: e.target.value })}

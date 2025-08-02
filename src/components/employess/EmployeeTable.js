@@ -35,7 +35,16 @@ export default  function EmployeeTable({employees, onEdit, onDelete, sortField, 
 
                             <td className="p-3 space-x-3">
                                 <button onClick={() => onEdit((emp))} className="text-blue-600">Изменить</button>
-                                <button onClick={() => onDelete((emp.id))} className="text-red-600">Удалить</button>
+                                <button
+                                    onClick={() => {
+                                        if (window.confirm("Вы уверены, что хотите удалить этого сотрудника?")) {
+                                            onDelete(emp.id);
+                                        }
+                                    }}
+                                    className="text-red-500"
+                                >
+                                    Удалить
+                                </button>
                             </td>
                         </tr>
                     ))}

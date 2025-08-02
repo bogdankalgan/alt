@@ -75,10 +75,10 @@ export default function Login() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center min-h-screen bg-yellow-100">
             <form
                 onSubmit={isRegistering ? handleRegister : handleLogin}
-                className="bg-white p-8 rounded shadow w-96"
+                className="bg-yellow-300 p-8 rounded shadow w-96"
             >
                 <h2 className="text-2xl mb-4">
                     {isRegistering ? "Регистрация" : "Вход в систему"}
@@ -118,7 +118,7 @@ export default function Login() {
                 <div className="flex space-x-2">
                     <button
                         type="submit"
-                        className="flex-1 bg-blue-500 text-white p-2 rounded"
+                        className="flex-1 bg-yellow-400 text-white p-2 rounded hover:bg-yellow-500"
                         disabled={loading}
                     >
                         {isRegistering ? "Зарегистрировать" : loading ? "Проверка..." : "Войти"}
@@ -130,7 +130,7 @@ export default function Login() {
                             setError("");
                             setSuccess("");
                         }}
-                        className="flex-1 bg-gray-300 text-black p-2 rounded"
+                        className="flex-1 bg-gray-300 text-black p-2 rounded hover:gray-500"
                     >
                         {isRegistering ? "Назад" : "Регистрация"}
                     </button>

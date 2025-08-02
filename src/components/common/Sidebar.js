@@ -8,7 +8,7 @@ export default function Sidebar() {
 
     if(user.role === "owner") {
         menuItems.push(
-            {to: "/portrait", label: "Портрет кадидатаы"},
+            {to: "/portrait", label: "Портрет кадидатов"},
             {to: "/departments", label: "Профили отделов"},
             {to: "/employees", label: "Сотрудники"},
             {to: "/tests", label: "Тесты"},
@@ -33,11 +33,11 @@ export default function Sidebar() {
     }
 
     return (
-        <div className="w-64 h-screen bg-gray-800 text-white p-4">
-            <h2 className="text-2xl font-bold mb-6">HR Admin</h2>
+        <div className="w-64 h-screen bg-yellow-600 text-white p-4">
+            <img src="./icons/alt_logo.png" alt="site-logo" className="w-[100px] h-[70px]"/>
             <nav className="flex flex-col space-y-2">
                 {menuItems.map((item) => (
-                    <NavLink to={item.to} key={item.to} className={({isActive}) => `block px-4 py-2 rounded hover:bg-grey-700 ${isActive ? "bg-grey-700" : " "}`}>
+                    <NavLink to={item.to} key={item.to} className={({isActive}) => `block px-4 py-2 rounded hover:bg-grey-700 ${isActive ? "bg-grey-700" : " "} hover:text-yellow-200`}>
                         {item.label}
                     </NavLink>
                 ))}

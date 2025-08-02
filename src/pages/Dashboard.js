@@ -60,7 +60,7 @@ export default function Dashboard() {
                 </button>
             </div>
 
-            <div className="bg-white p-6 rounded shadow">
+            <div className="bg-yellow-200 p-6 rounded shadow">
                 {renderContentByRole()}
             </div>
 
