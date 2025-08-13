@@ -14,11 +14,7 @@ export default function VacanciesPage() {
             .from("vacancies")
             .select("*")
             .order("created_at", { ascending: false });
-        if (error) {
-            console.error("Ошибка при загрузке вакансий:", error);
-        } else {
-            setVacancies(data);
-        }
+        if (!error) setVacancies(data || []);
     };
 
     useEffect(() => {
@@ -37,15 +33,26 @@ export default function VacanciesPage() {
 
     const handleVacancyDeleted = async (id) => {
         const { error } = await supabase.from("vacancies").delete().eq("id", id);
-        if (error) {
-            console.error("Ошибка при удалении:", error);
-        } else {
-            fetchVacancies();
+        if (!error) {
+            setVacancies((prev) => prev.filter((v) => v.id !== id));
         }
     };
 
-    const handleFormSuccess = () => {
+    // Получаем запись из формы и моментально обновляем локальное состояние
+    const handleFormSuccess = (saved) => {
+        if (saved?.id) {
+            setVacancies((prev) => {
+                const exists = prev.some((v) => v.id === saved.id);
+                const next = exists
+                    ? prev.map((v) => (v.id === saved.id ? saved : v))
+                    : [saved, ...prev];
+                return next;
+            });
+        }
+        // Доп. рефетч — на случай, если БД проставляет/изменяет поля (триггеры, updated_at и т.п.)
+        // Выполняем асинхронно, чтобы UI обновился мгновенно
         fetchVacancies();
+
         setShowForm(false);
         setEditingVacancy(null);
     };
@@ -77,9 +84,9 @@ export default function VacanciesPage() {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-6 rounded shadow-md w-full max-w-lg">
                         <VacancyForm
-                            vacancy={editingVacancy}
+                            initialData={editingVacancy}
                             onClose={handleCloseForm}
-                            onSuccess={handleFormSuccess}
+                            onVacancyAdded={handleFormSuccess}
                         />
                     </div>
                 </div>

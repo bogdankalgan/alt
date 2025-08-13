@@ -40,7 +40,8 @@ export default function VacancyList({ onVacancyDeleted, onVacancyEdit }) {
                         <p><strong>Зарплата:</strong> {vacancy.salary}</p>
                         <p><strong>География:</strong> {vacancy.location}</p>
                         <p><strong>Формат работы:</strong> {vacancy.format}</p>
-                        <p><strong>Задачи и KPI:</strong> {vacancy.kpi}</p>
+                        <p><strong>Задачи: </strong> {vacancy.tasks}</p>
+                        <p><strong>KPI: </strong> {vacancy.kpi}</p>
                         {vacancy.approved ? (
                             <p><strong>Согласовано</strong></p>
                         ) : (
